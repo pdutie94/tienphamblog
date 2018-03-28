@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return view('admin.layouts.dashboard.index');
+    })->name('dashboard');
+
+    Route::prefix('category')->group(function () {
+        Route::get('/', function () {
+            return view('admin.layouts.category.index');
+        })->name('category');
+    });
+});
