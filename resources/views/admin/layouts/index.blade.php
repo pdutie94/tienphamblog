@@ -13,6 +13,8 @@
 <link href="css/font-awesome.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 <link href="css/pages/dashboard.css" rel="stylesheet">
+<link href="css/custom.css" rel="stylesheet">
+@yield('stylesheet')
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -25,6 +27,7 @@
   <div class="main-inner">
     <div class="container">
       <div class="row">
+        @include('admin.includes.session')
           @yield('content')
       </div>
       <!-- /row --> 
@@ -38,13 +41,18 @@
 <!-- Le javascript
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
-<script src="js/jquery-1.7.2.min.js"></script> 
+<script src="js/jquery-1.8.0.min.js"></script> 
 <script src="js/excanvas.min.js"></script> 
-<script src="js/chart.min.js" type="text/javascript"></script> 
+<!--<script src="js/chart.min.js" type="text/javascript"></script>-->
 <script src="js/bootstrap.js"></script>
 <script language="javascript" type="text/javascript" src="js/full-calendar/fullcalendar.min.js"></script>
  
-<script src="js/base.js"></script> 
-@yield('bottom-script')
+<script src="js/base.js"></script>
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
+</script>
+@yield('bottom-scripts')
 </body>
 </html>

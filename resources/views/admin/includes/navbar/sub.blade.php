@@ -3,7 +3,7 @@
     <div class="container">
       <ul class="mainnav">
         <li @if(Request::is('admin')) class="active" @endif><a href="{{ route('dashboard') }}"><i class="icon-dashboard"></i><span>Bảng điều khiển</span> </a> </li>
-        <li @if(Request::is('admin/category')) class="active" @endif><a href="{{ route('category') }}"><i class="icon-list-alt"></i><span>Danh mục</span> </a> </li>
+        <li @if(Request::is('admin/categories')) class="active" @endif><a href="{{ route('categories') }}"><i class="icon-list-alt"></i><span>Danh mục</span> </a> </li>
         <li><a href="guidely.html"><i class="icon-facetime-video"></i><span>App Tour</span> </a></li>
         <li><a href="charts.html"><i class="icon-bar-chart"></i><span>Charts</span> </a> </li>
         <li><a href="shortcodes.html"><i class="icon-code"></i><span>Shortcodes</span> </a> </li>

@@ -20,9 +20,14 @@ Route::prefix('admin')->group(function () {
         return view('admin.layouts.dashboard.index');
     })->name('dashboard');
 
-    Route::prefix('category')->group(function () {
-        Route::get('/', function () {
-            return view('admin.layouts.category.index');
-        })->name('category');
+    Route::prefix('categories')->group(function () {
+        Route::get('/', 'CategoryController@index')->name('categories');
+        Route::get('/edit/{catid}', 'CategoryController@edit')->name('edit_category');
+        Route::post('save', 'CategoryController@save')->name('save_category');
+    });
+
+    //media library routes
+    Route::prefix('media')->group(function () {
+        Route::get('/', 'MediaController@index');
     });
 });
