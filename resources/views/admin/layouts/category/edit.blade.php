@@ -70,7 +70,6 @@
 		</div>
 		</div>
 </div>
-{{base_path()}}
 @endsection
 
 @section('bottom-scripts')
