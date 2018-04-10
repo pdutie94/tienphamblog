@@ -12,7 +12,7 @@
 		<div class="widget">
 			<div class="widget-header">
 				<i class="icon-list-alt"></i>
-				<h3>Danh mục</h3>
+				<h3>{{ $isNew ? 'Thêm danh mục' : 'Chỉnh sửa danh mục' }}</h3>
 			</div>
 			<div class="widget-content">
 			<form id="edit-category" class="form-horizontal" data-parsley-validate method="post" action="{{ route('save_category') }}" enctype="multipart/form-data">
