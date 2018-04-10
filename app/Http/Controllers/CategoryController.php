@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\File;
 use App\Helpers\Helper;
 use App\Http\Requests\CategoryRequest;
 use Session;
@@ -32,11 +33,15 @@ class CategoryController extends Controller
     }
 
     public function save(CategoryRequest $request) {
+        $file = new File;
         if((int) $request->id == 0) {
             $this->category->title = $request->title;
             $this->category->slug = $request->slug;
             $this->category->parent_id = $request->parent_cat;
             $this->category->description = $request->description;
+            if($request->hasFile('image')){
+                $this->category->image = $file->uploadFile($request->image, 'thumbs');
+            }
             if($request->state == NULL) {
                 $this->category->state = 0;
             } else {
@@ -48,6 +53,13 @@ class CategoryController extends Controller
             $row = $this->category->find($request->id);
             $row->title = $request->title;
             $row->slug = $request->slug;
+            if((int) $request->remove_img == 0) {
+                if($request->hasFile('image')){
+                    $row->image = $file->uploadFile($request->image, 'thumbs');
+                }
+            } else {
+                $row->image = '';
+            }
             $row->parent_id = $request->parent_cat;
             $row->description = $request->description;
             if($request->state == NULL) {
@@ -58,9 +70,8 @@ class CategoryController extends Controller
             $row->save();
             $request->session()->flash('success', 'Danh mục lưu thành công');
         }
-
-        
-
         return redirect()->route('categories');
     }
+
+    
 }

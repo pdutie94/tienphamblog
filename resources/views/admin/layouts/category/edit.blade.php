@@ -15,7 +15,7 @@
 				<h3>Danh mục</h3>
 			</div>
 			<div class="widget-content">
-			<form id="edit-category" class="form-horizontal" data-parsley-validate method="post" action="{{ route('save_category') }}">
+			<form id="edit-category" class="form-horizontal" data-parsley-validate method="post" action="{{ route('save_category') }}" enctype="multipart/form-data">
 				<fieldset>
 				<div class="control-group">
 					<label class="control-label" for="title">Tiêu đề <span>*</span>
@@ -29,6 +29,20 @@
 					<div class="controls">
 						<input type="text" class="span3" id="slug" name="slug" value="{{ ($data != NULL && $data != '') ? $data->slug : '' }}" required="">
 						<p class="help-block">Slug sẽ tự tạo theo tiêu đề của danh mục nếu bỏ trống.</p>
+					</div> <!-- /controls -->		
+				</div>
+				<div class="control-group"><label class="control-label" for="image">Ảnh</label>
+					<div class="controls" id="image-box">
+					@if(isset($data->image) && $data->image != NULL && $data->image != '')
+					<img id="prev-image" src="{{ URL::to('/') . '/' . $data->image }}" alt="" class="prev-image" width="100"/>
+					<button type="button" name="select_image" class="btn btn-primary" id="select-image">Thay đổi</button>
+						<button type="button" class="btn btn-danger" id="del-image" onclick="deleteImage()">Xóa</button>
+					@else
+					<img id="prev-image" src="#" alt="" class="prev-image hidden"/>
+					<button type="button" name="select_image" class="btn btn-primary" id="select-image">Chọn ảnh</button>
+						<button type="button" class="btn btn-danger hidden" id="del-image" onclick="deleteImage()">Xóa</button>
+					@endif
+						<input type="file" class="span3 hidden" id="image" name="image" value="" onchange="readURL(this)">
 					</div> <!-- /controls -->		
 				</div>
 				<div class="control-group">
@@ -59,6 +73,7 @@
 					</div> <!-- /controls -->		
 				</div>
 				<input type="hidden" name="id" id="cat_id" value="{{ $isNew ? '0' : $data->id }}">
+				<input type="hidden" name="remove_img" id="remove_img" value="0">
 				<input type="hidden" name="_token" value="{{ csrf_token() }}">
 				
 				<div class="form-actions">
@@ -77,7 +92,34 @@
 <script src="js/vi.js"></script>
 <script src="js/tinymce.min.js"></script>
 <script>
-	tinymce.init({
+	$(document).ready(function() {
+		$('#select-image').click(function() {
+			$('#image').click();
+		});
+	});
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+			reader.onload = function (e) {
+				$('#prev-image, #del-image').removeClass('hidden');
+				$('#prev-image')
+				.attr('src', e.target.result)
+				.width(100);
+			};
+			$('#select-image').text('Thay đổi');
+			$('#remove_img').val(0);
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	function deleteImage() {
+		$('#prev-image, #del-image').addClass('hidden');
+		$('#prev-image').attr('src', '#');
+		$('#select-image').text('Chọn ảnh');
+		$('#image').val("");
+		$('#remove_img').val(1);
+	}
+	/*tinymce.init({
 		selector: '#description',
 		theme: 'modern',
 		plugins: 'tpfilemanager print preview fullpage searchreplace autolink directionality visualblocks visualchars fullscreen image link media template codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists textcolor wordcount  imagetools contextmenu colorpicker textpattern help',
@@ -91,6 +133,6 @@
 		external_plugins: { "filemanager" : "plugins/tpfilemanager/plugin.min.js"},
 		templates: [
 		]
-	});
+	});*/
 </script>
 @endsection

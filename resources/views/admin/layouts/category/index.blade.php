@@ -29,7 +29,11 @@ use App\Helpers\Helper;
                         <td>{!! Helper::stateHtml($category->state) !!}</td>
                         <td><span class="data-title">{{$category->title}}</span><br><span class="data-slug">Slug: {{$category->slug}}</span>
                         </td>
-                        <td>{{$category->image}}</td>
+                        <td>
+                        @if($category->image != NULL && $category->image != '')
+                        <img src="{{URL::to('/') . '/' . $category->image}}" alt="" width="100" class="img-responsive"/>
+                        @endif
+                        </td>
                         <td>{{$category->updated_at}}</td>
                         <td>
                             <a href="{{ url('/admin/categories/edit/'. $category->id) }}" class="btn btn-small btn-edit" data-toggle="tooltip" title="Chỉnh sửa"><i class="btn-icon-only icon-pencil"> </i></a>
