@@ -23,6 +23,7 @@ Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
         Route::get('/', 'CategoryController@index')->name('categories');
         Route::get('/edit/{catid}', 'CategoryController@edit')->name('edit_category');
+        Route::get('/edit/0', 'CategoryController@edit')->name('new_category');
         Route::post('save', 'CategoryController@save')->name('save_category');
     });
 
