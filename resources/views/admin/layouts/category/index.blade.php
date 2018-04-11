@@ -37,7 +37,7 @@ use App\Helpers\Helper;
                         <td>{{$category->updated_at}}</td>
                         <td>
                             <a href="{{ url('/admin/categories/edit/'. $category->id) }}" class="btn btn-small btn-edit" data-toggle="tooltip" title="Chỉnh sửa"><i class="btn-icon-only icon-pencil"> </i></a>
-                            <a href="javascript:;" class="btn btn-danger btn-small" data-toggle="tooltip" title="Xóa"><i class="btn-icon-only icon-trash"></i></a>
+                            <a href="{{ url('/admin/categories/delete/'. $category->id) }}" class="btn btn-danger btn-small" data-toggle="tooltip" title="Xóa"><i class="btn-icon-only icon-trash"></i></a>
                         </td>
                     </tr>
                     @endforeach

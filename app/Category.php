@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -37,5 +38,31 @@ class Category extends Model
 
     public function getTreeCategory() {
         
+    }
+
+    public function autoGenerateSlug($title) {
+        $slug = $maybe_slug = Str::slug($title);
+        $next = 1;
+        $old_slug = self::where('slug', '=', $slug)->first();
+        if($old_slug == NULL) {
+            $slug = $maybe_slug;
+        } else {
+            while (self::where('slug', '=', $slug)->first()) {
+                $slug = "$maybe_slug-$next";
+                $next++;
+            }
+        }
+
+        return $slug;
+    }
+
+    public function deleteCategory($cat_id) {
+        $cat = self::find($cat_id);
+        if($cat == NULL) {
+            return false;
+        }
+        $cat->delete();
+
+        return true;
     }
 }

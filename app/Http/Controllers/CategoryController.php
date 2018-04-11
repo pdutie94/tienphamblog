@@ -34,9 +34,13 @@ class CategoryController extends Controller
 
     public function save(CategoryRequest $request) {
         $file = new File;
+        
+        if($request->slug == NULL || $request->slug == '') {
+            $slug = $this->category->autoGenerateSlug($request->title);
+        }
         if((int) $request->id == 0) {
             $this->category->title = $request->title;
-            $this->category->slug = $request->slug;
+            $this->category->slug = $slug;
             $this->category->parent_id = $request->parent_cat;
             $this->category->description = $request->description;
             if($request->hasFile('image')){
@@ -52,7 +56,7 @@ class CategoryController extends Controller
         } else {
             $row = $this->category->find($request->id);
             $row->title = $request->title;
-            $row->slug = $request->slug;
+            $row->slug = $slug;
             if((int) $request->remove_img == 0) {
                 if($request->hasFile('image')){
                     $row->image = $file->uploadFile($request->image, 'thumbs');
@@ -72,6 +76,14 @@ class CategoryController extends Controller
         }
         return redirect()->route('categories');
     }
-
     
+    public function delete($cat_id) {
+        $isDeleted = $this->category->deleteCategory($cat_id);
+        if($isDeleted) {
+            Session::flash('success', 'Đã xóa danh mục');
+        } else {
+            Session::flash('error', 'Không tìm thấy danh mục');
+        }
+        return redirect()->route('categories');
+    }
 }

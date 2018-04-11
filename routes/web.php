@@ -25,6 +25,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{catid}', 'CategoryController@edit')->name('edit_category');
         Route::get('/edit/0', 'CategoryController@edit')->name('new_category');
         Route::post('save', 'CategoryController@save')->name('save_category');
+        Route::get('/delete/{catid}', 'CategoryController@delete')->name('delete_category');
     });
 
     //media library routes

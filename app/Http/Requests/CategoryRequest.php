@@ -25,7 +25,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'slug' => 'required'
+            'slug' => 'unique:categories,slug,'.$this->id
         ];
     }
 
@@ -49,6 +49,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'title.required' => 'Tiêu đề không được bỏ trống',
+            'slug.unique' => 'Slug đã tồn tại'
         ];
     }
 }

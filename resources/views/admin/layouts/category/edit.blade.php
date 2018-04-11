@@ -1,5 +1,6 @@
 <?php
 //use App\Helpers\Helper;
+
 ?>
 @extends('admin.layouts.index')
 
@@ -25,9 +26,9 @@
 					</div> <!-- /controls -->		
 				</div>
 				<div class="control-group">
-					<label class="control-label" for="slug">Slug <span>*</span></label>
+					<label class="control-label" for="slug">Slug</label>
 					<div class="controls">
-						<input type="text" class="span3" id="slug" name="slug" value="{{ ($data != NULL && $data != '') ? $data->slug : '' }}" required="">
+						<input type="text" class="span3" id="slug" name="slug" value="{{ ($data != NULL && $data != '') ? $data->slug : '' }}" >
 						<p class="help-block">Slug sẽ tự tạo theo tiêu đề của danh mục nếu bỏ trống.</p>
 					</div> <!-- /controls -->		
 				</div>
@@ -35,12 +36,12 @@
 					<div class="controls" id="image-box">
 					@if(isset($data->image) && $data->image != NULL && $data->image != '')
 					<img id="prev-image" src="{{ URL::to('/') . '/' . $data->image }}" alt="" class="prev-image" width="100"/>
-					<button type="button" name="select_image" class="btn btn-primary" id="select-image">Thay đổi</button>
-						<button type="button" class="btn btn-danger" id="del-image" onclick="deleteImage()">Xóa</button>
+					<button type="button" name="select_image" class="btn btn-primary btn-small" id="select-image">Thay đổi</button>
+					<button type="button" class="btn btn-danger btn-small" id="del-image" onclick="deleteImage()">Xóa</button>
 					@else
 					<img id="prev-image" src="#" alt="" class="prev-image hidden"/>
-					<button type="button" name="select_image" class="btn btn-primary" id="select-image">Chọn ảnh</button>
-						<button type="button" class="btn btn-danger hidden" id="del-image" onclick="deleteImage()">Xóa</button>
+					<button type="button" name="select_image" class="btn btn-primary btn-small" id="select-image">Chọn ảnh</button>
+					<button type="button" class="btn-small btn btn-danger hidden" id="del-image" onclick="deleteImage()">Xóa</button>
 					@endif
 						<input type="file" class="span3 hidden" id="image" name="image" value="" onchange="readURL(this)">
 					</div> <!-- /controls -->		
