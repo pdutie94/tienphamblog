@@ -6,6 +6,7 @@
 
 @section('stylesheet')
 <link href="css/parsley.css" rel="stylesheet">
+<link href="css/chosen.min.css" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -50,7 +51,7 @@
 					<label class="control-label" for="parent_cat">Danh mục cha
 					</label>
 					<div class="controls">
-						<select class="form-control" id="parent_cat" name="parent_cat">
+						<select class="form-control chosen-select" id="parent_cat" name="parent_cat">
 						<option value="0">Chọn danh mục</option>
 						@foreach($listCategory as $cat)
 						<option value="{{$cat->id}}" {{ ($data != NULL && $data != '' && $data->parent_id == $cat->id) ? 'selected' : '' }}>{{$cat->title}}</option>
@@ -92,7 +93,9 @@
 <script src="js/parsley.min.js"></script>
 <script src="js/vi.js"></script>
 <script src="js/tinymce.min.js"></script>
+<script src="js/chosen.jquery.min.js"></script>
 <script>
+	$(".chosen-select").chosen();
 	$(document).ready(function() {
 		$('#select-image').click(function() {
 			$('#image').click();

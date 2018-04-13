@@ -36,7 +36,9 @@ class CategoryController extends Controller
         $file = new File;
         
         if($request->slug == NULL || $request->slug == '') {
-            $slug = $this->category->autoGenerateSlug($request->title);
+            $slug = $this->category->autoGenerateSlug($request->title, $request->id);
+        } else {
+            $slug = $request->slug;
         }
         if((int) $request->id == 0) {
             $this->category->title = $request->title;

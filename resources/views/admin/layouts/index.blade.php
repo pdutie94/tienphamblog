@@ -42,7 +42,7 @@
 ================================================== --> 
 <!-- Placed at the end of the document so the pages load faster --> 
 <script src="js/jquery-1.12.4.min.js"></script> 
-<script src="js/excanvas.min.js"></script> 
+<!--<script src="js/excanvas.min.js"></script>-->
 <!--<script src="js/chart.min.js" type="text/javascript"></script>-->
 <script src="js/bootstrap.min.js"></script>
 <!--<script language="javascript" type="text/javascript" src="js/full-calendar/fullcalendar.min.js"></script>-->

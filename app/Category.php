@@ -40,16 +40,20 @@ class Category extends Model
         
     }
 
-    public function autoGenerateSlug($title) {
+    public function autoGenerateSlug($title, $id) {
         $slug = $maybe_slug = Str::slug($title);
         $next = 1;
         $old_slug = self::where('slug', '=', $slug)->first();
         if($old_slug == NULL) {
             $slug = $maybe_slug;
         } else {
-            while (self::where('slug', '=', $slug)->first()) {
-                $slug = "$maybe_slug-$next";
-                $next++;
+            if ($old_slug->id != $id) {
+                while (self::where('slug', '=', $slug)->first()) {
+                    $slug = "$maybe_slug-$next";
+                    $next++;
+                }
+            } else {
+                $slug = $maybe_slug;
             }
         }
 
