@@ -86,3 +86,28 @@
     -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
     transform: translateX(-50%) translateY(-50%) rotate(45deg);
 }
+
+.widget-header .add-category {
+    vertical-align: middle;
+    text-decoration: underline;
+}
+
+.search-box {
+    display: inline-block;
+    float: right;
+}
+.search-box > form {
+    margin: 0;
+}
+.search-box > form > * {
+    display: inline-block;
+    margin-bottom: 0;
+}
+.search-box #input-search {
+    margin-right: 5px;
+    margin-bottom:3px;
+    width: 150px;
+}
+.actions-box {
+    border-bottom: 1px solid #d6d6d6;
+}

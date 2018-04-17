@@ -19,7 +19,7 @@ class Category extends Model
      * @param interger|array|null $except_id
      * @return array
      */
-    public function getListCategory($except_id = null) {
+    public function getListCategory($except_id = null, $pagination = true) {
         if(isset($except_id)) {
             if(!is_array($except_id)) {
                 $list = self::where('id', '<>', $except_id)->get();

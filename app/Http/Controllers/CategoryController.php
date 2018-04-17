@@ -18,8 +18,9 @@ class CategoryController extends Controller
     }
 
     public function index() {
+        $search = \Request::get('search');
         $listCategory = $this->category->getListCategory();
-        return view('admin.layouts.category.index', ['listCategory' => $listCategory]);
+        return view('admin.layouts.category.index', ['listCategory' => $listCategory, 'search_key' => $search]);
     }
 
     public function edit($category_id) {
@@ -27,7 +28,7 @@ class CategoryController extends Controller
         if($category_id != 0) {
             $isNew = false;
         }
-        $listCategory = $this->category->getListCategory($category_id);
+        $listCategory = $this->category->getListCategory($category_id, false);
         $data = $this->category->getDataCategory($category_id);
         return view('admin.layouts.category.edit', ['data' => $data, 'listCategory' => $listCategory, 'isNew' => $isNew]);
     }

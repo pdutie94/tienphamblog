@@ -8,11 +8,26 @@ use App\Helpers\Helper;
         <div class="widget-header">
             <i class="icon-list-alt"></i>
             <h3>DANH MỤC</h3>
+            <a href="#" class="add-category">Thêm mới</a>
+            <div class="search-box">
+                <form action="{{ route('categories') }}" method="get">
+                    <label for="input-search">Tìm kiếm</label>
+                    <input type="text" name="search" id="input-search">
+                </form>
+            </div>
         </div>
         <div class="widget-content">
+            <div class="actions-box">
+                <select name="actions" id="actions" class="actions">
+                    <option value="1">Xuất bản</option>
+                    <option value="0">Ngừng xuất bản</option>
+                    <option value="2">Xóa</option>
+                </select>
+            </div>
             <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
+                        <th width="1%"><input type="checkbox" id="select_all"/></th>
                         <th width="1%">ID</th>
                         <th width="7%">Trạng thái</th>
                         <th width="nowrap">Tên danh mục</th>
@@ -25,6 +40,7 @@ use App\Helpers\Helper;
                     @if(!empty($listCategory))
                     @foreach($listCategory as $category)
                     <tr>
+                        <td><input type="checkbox" name="select[]" class="checkbox"/></td>
                         <td>{{$category->id}}</td>
                         <td>{!! Helper::stateHtml($category->state) !!}</td>
                         <td><span class="data-title">{{$category->title}}</span><br><span class="data-slug">Slug: {{$category->slug}}</span>
@@ -54,4 +70,23 @@ use App\Helpers\Helper;
         </div>
     </div>
 </div>
+@endsection
+
+@section('bottom-scripts')
+<script>
+    $('#select_all').change(function() {
+        var checkboxes = $(this).parents('table').find(':checkbox');
+        checkboxes.prop('checked', $(this).is(':checked'));
+    });
+    
+    $('.checkbox').change(function() {
+        $number_checkbox = $('.checkbox').length;
+        $number_checked = $('.checkbox:checked').length;
+        if($number_checked < $number_checkbox) {
+            $('#select_all').prop('checked', false);
+        } else {
+            $('#select_all').prop('checked', true);
+        }
+    });
+</script>
 @endsection

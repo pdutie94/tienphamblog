@@ -28,6 +28,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{catid}', 'CategoryController@delete')->name('delete_category');
     });
 
+    Route::prefix('posts')->group(function () {
+        Route::get('/', 'PostController@index')->name('posts');
+        Route::get('/edit/{postid}', 'PostController@edit')->name('edit_post');
+        Route::get('/edit/0', 'PostController@edit')->name('new_post');
+        Route::post('save', 'PostController@save')->name('save_post');
+        Route::get('/delete/{postid}', 'PostController@delete')->name('delete_post');
+    });
+
     //media library routes
     Route::prefix('media')->group(function () {
         Route::get('/', 'MediaController@index');
