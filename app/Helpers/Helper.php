@@ -7,10 +7,10 @@ class Helper {
     public static function stateHtml($stateValue) {
         $html = '';
         if($stateValue == self::STATE_PUBLISHED) {
-            $html = '<span class="state-box" data-toggle="tooltip" title="Đã xuất bản"><i class="state-icon state-icon-success icon-ok"></i></span>';
+            $html = '<span class="state-box" data-toggle="tooltip" title="Đã xuất bản"><i class="state-icon state-icon-success fa fa-check"></i></span>';
         }
         if($stateValue == self::STATE_UNPUBLISH) {
-            $html = '<span class="state-box" data-toggle="tooltip" title="Chưa xuất bản"><i class="state-icon state-icon-unpublish icon-remove"></i></span>';
+            $html = '<span class="state-box" data-toggle="tooltip" title="Chưa xuất bản"><i class="state-icon state-icon-unpublish fa fa-remove"></i></span>';
         }
 
         return $html;

@@ -29,3 +29,4 @@
   <!-- /subnavbar-inner --> 
 </div>
 <!-- /subnavbar -->
+@yield('toolbar')

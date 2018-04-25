@@ -2,48 +2,73 @@
 use App\Helpers\Helper;
 ?>
 @extends('admin.layouts.index')
+
+@section('page-title')
+<div class="row margin-top-30 margin-bottom-30">
+	<div class="col">
+		<h3>Danh sách danh mục</h3>
+	</div>
+</div>
+@endsection
+
+@section('toolbar')
+<div class="subhead margin-top-30 margin-bottom-30" id="subhead">
+                <div class="btn-toolbar" id="toolbar">
+                    <div class="btn-wrapper" id="toolbar-new">
+                        <a href="{{ route('new_category') }}" class="btn btn-small button-new btn-success">
+                        <span class="fa fa-plus-circle icon-white" aria-hidden="true"></span>
+                            Thêm mới</a>
+                    </div>
+                    <div class="btn-wrapper" id="toolbar-edit">
+                        <button onclick="doButtonAction('button-edit', 'edit')" class="btn btn-small button-edit">
+                        <span class="fa fa-pencil" aria-hidden="true"></span>
+                        Chỉnh sửa</button>
+                    </div>
+                    <div class="btn-wrapper" id="toolbar-publish">
+                        <button onclick="doButtonAction('button-edit', 'publish')" class="btn btn-small button-publish">
+                        <span class="fa fa-check" aria-hidden="true"></span>
+                        Xuất bản</button>
+                    </div>
+                    <div class="btn-wrapper" id="toolbar-unpublish">
+                        <button onclick="doButtonAction('button-edit', 'unpublish')" class="btn btn-small button-unpublish">
+                        <span class="fa fa-remove" aria-hidden="true"></span>
+                        Ngừng xuất bản</button>
+                    </div>
+                    <div class="btn-wrapper" id="toolbar-del">
+                        <button onclick="doButtonAction('button-edit', 'trash')" class="btn btn-small button-del">
+                        <span class="fa fa-trash" aria-hidden="true"></span>
+                        Thùng rác</button>
+                    </div>
+                </div>
+                
+</div>
+@endsection
+
 @section('content')
-<div class="span12">
-    <div class="widget widget-table action-table">
-        <div class="widget-header">
-            <i class="icon-list-alt"></i>
-            <h3>DANH MỤC</h3>
-            <a href="#" class="add-category">Thêm mới</a>
-            <div class="search-box">
-                <form action="{{ route('categories') }}" method="get">
-                    <label for="input-search">Tìm kiếm</label>
-                    <input type="text" name="search" id="input-search">
-                </form>
-            </div>
-        </div>
-        <div class="widget-content">
-            <div class="actions-box">
-                <select name="actions" id="actions" class="actions">
-                    <option value="1">Xuất bản</option>
-                    <option value="0">Ngừng xuất bản</option>
-                    <option value="2">Xóa</option>
-                </select>
-            </div>
-            <table class="table table-striped table-bordered">
+<div class="list-wrap">
+<div class="card mb-3">
+    <div class="card-body">
+        <div class="table-responsivre">
+        <table class="table table-striped table-bordered">
                 <thead>
                     <tr>
                         <th width="1%"><input type="checkbox" id="select_all"/></th>
-                        <th width="1%">ID</th>
-                        <th width="7%">Trạng thái</th>
+                        <th width="10%">Trạng thái</th>
                         <th width="nowrap">Tên danh mục</th>
-                        <th width="10%">Ảnh</th>
+                        <th width="12%">Ảnh</th>
                         <th width="15%">Cập nhật lúc</th>
-                        <th width="15%" class="td-actions">Hành động</th>
+                        <th width="1%">ID</th>
                     </tr>
                 </thead>
                 <tbody>
                     @if(!empty($listCategory))
                     @foreach($listCategory as $category)
                     <tr>
-                        <td><input type="checkbox" name="select[]" class="checkbox"/></td>
-                        <td>{{$category->id}}</td>
+                        <td><input type="checkbox" name="select" class="checkbox" value="{{$category->id}}"/></td>
+                        
                         <td>{!! Helper::stateHtml($category->state) !!}</td>
-                        <td><span class="data-title">{{$category->title}}</span><br><span class="data-slug">Slug: {{$category->slug}}</span>
+                        <td>
+                            <a href="{{ url('admin/categories/edit/' . $category->id) }}" class="data-title">{{$category->title}}</a><br><span class="data-slug">Slug: {{$category->slug}}</span>
                         </td>
                         <td>
                         @if($category->image != NULL && $category->image != '')
@@ -51,10 +76,7 @@ use App\Helpers\Helper;
                         @endif
                         </td>
                         <td>{{$category->updated_at}}</td>
-                        <td>
-                            <a href="{{ url('/admin/categories/edit/'. $category->id) }}" class="btn btn-small btn-edit" data-toggle="tooltip" title="Chỉnh sửa"><i class="btn-icon-only icon-pencil"> </i></a>
-                            <a href="{{ url('/admin/categories/delete/'. $category->id) }}" class="btn btn-danger btn-small" data-toggle="tooltip" title="Xóa"><i class="btn-icon-only icon-trash"></i></a>
-                        </td>
+                        <td>{{$category->id}}</td>
                     </tr>
                     @endforeach
                     @else
@@ -67,8 +89,11 @@ use App\Helpers\Helper;
 
                 </tfoot>
             </table>
+            <input type="hidden" name="site_url" id="site_url" value="{{ route('categories') }}">
+            <input type="hidden" name="task" id="task" value="Category">
         </div>
     </div>
+</div>
 </div>
 @endsection
 
@@ -88,5 +113,6 @@ use App\Helpers\Helper;
             $('#select_all').prop('checked', true);
         }
     });
+    
 </script>
 @endsection

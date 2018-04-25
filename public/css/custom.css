@@ -1,6 +1,6 @@
 .action-table .btn-small {
     padding: 2px 8px;
-    width: 10px;
+    width: auto;
     text-align: center;
 }
 .btn:hover {
@@ -108,6 +108,88 @@
     margin-bottom:3px;
     width: 150px;
 }
-.actions-box {
-    border-bottom: 1px solid #d6d6d6;
+#toolbar {
+    margin-bottom: 2px;
+}
+.btn-toolbar .btn-wrapper {
+    display: inline-block;
+    margin: 0 0 8px 5px;
+}
+.btn-toolbar .btn-wrapper:first-child {
+    margin-left: 0;
+}
+.btn-wrapper button, .btn-wrapper a {
+    font-size: 14px;
+}
+.btn-wrapper .btn-success, .btn-wrapper .btn-danger {
+    border: none;
+}
+#toolbar .btn.button-new {
+    width: 128px;
+    font-size: 14px;
+    color: #fff;
+}
+#toolbar [class^="icon-"], #toolbar [class*=" icon-"] {
+    background-color: #e6e6e6;
+    border-radius: 3px 0 0 3px;
+    border-right: 1px solid #b3b3b3;
+    height: auto;
+    line-height: inherit;
+    margin: 0 6px 0 -10px;
+    opacity: 1;
+    text-shadow: none;
+    width: 28px;
+    z-index: -1;
+    display: inline-block;
+}
+.btn:hover {
+    background-position: 0 !important;
+}
+.fa-pencil::before {
+    color: #24748c;
+}
+.fa-check::before {
+    color: #378137;
+}
+.fa-remove::before {
+    color: #942a25;
+}
+.btn-success {
+    background-color: #46a546;
+}
+.btn-success:hover, .btn-success:focus {
+    background-color: #2f6f2f;
+    color: #fff;
+    text-decoration: none;
+}
+#toolbar .btn-success [class^="icon-"], #toolbar .btn-success [class*=" icon-"] {
+    background-color: transparent;
+    border-right: 0;
+    border-left: 0;
+    width: 16px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.list-wrap .card {
+    border: none;
+}
+.list-wrap .card-body {
+    padding: 0;
+}
+.list-wrap .card-header {
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+}
+.margin-top-30 {
+    margin-top: 30px;
+}
+.margin-right-30 {
+    margin-right: 30px;
+}
+.margin-bottom-30 {
+    margin-bottom: 30px;
+}
+.margin-left-30 {
+    margin-left: 30px;
 }

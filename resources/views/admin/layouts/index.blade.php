@@ -7,12 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <base href="{{ asset('') }}">
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-responsive.min.css" rel="stylesheet">
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600"
-        rel="stylesheet">
-<link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<link href="css/pages/dashboard.css" rel="stylesheet">
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<link href="css/sb-admin.css" rel="stylesheet">
 <link href="css/custom.css" rel="stylesheet">
 @yield('stylesheet')
 <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -20,38 +16,37 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
 
 @include('admin.includes.header')
-<div class="main">
-  <div class="main-inner">
-    <div class="container">
-      <div class="row">
-        @include('admin.includes.session')
-          @yield('content')
-      </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
+<div class="content-wrapper">
+  <div class="container-fluid">
+    @include('admin.includes.session')
+    @yield('page-title')
+    @yield('toolbar')
+    @yield('content')
   </div>
-  <!-- /main-inner --> 
+  @include('admin.includes.footer')
 </div>
-<!-- /main -->
-@include('admin.includes.footer')
+
 <!-- Le javascript
 ================================================== --> 
-<!-- Placed at the end of the document so the pages load faster --> 
-<script src="js/jquery-1.12.4.min.js"></script> 
-<!--<script src="js/excanvas.min.js"></script>-->
-<!--<script src="js/chart.min.js" type="text/javascript"></script>-->
-<script src="js/bootstrap.min.js"></script>
-<!--<script language="javascript" type="text/javascript" src="js/full-calendar/fullcalendar.min.js"></script>-->
- 
-<script src="js/base.js"></script>
+<!-- Bootstrap core JavaScript-->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<!-- Core plugin JavaScript-->
+<script src="js/jquery.easing.min.js"></script>
+<!-- Page level plugin JavaScript-->
+<!--<script src="js/Chart.js"></script>-->
+<!-- Custom scripts for all pages-->
+<script src="js/sb-admin.min.js"></script>
+<!-- Custom scripts for this page-->
+<!--<script src="js/sb-admin-charts.min.js"></script>-->
+<script src="js/main.js"></script>
 <script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-});
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 </script>
 @yield('bottom-scripts')
 </body>

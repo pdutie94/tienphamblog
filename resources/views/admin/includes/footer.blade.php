@@ -1,14 +1,8 @@
-<div class="footer">
-  <div class="footer-inner">
-    <div class="container">
-      <div class="row">
-        <div class="span12"> &copy; {{ date('Y') }} <a href="{{ route('dashboard') }}">Tiến Phạm Blog</a>. </div>
-        <!-- /span12 --> 
+
+<footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>&copy; {{ date('Y') }} <a href="{{ route('dashboard') }}">Tiến Phạm Blog</a></small>
+        </div>
       </div>
-      <!-- /row --> 
-    </div>
-    <!-- /container --> 
-  </div>
-  <!-- /footer-inner --> 
-</div>
-<!-- /footer --> 
+    </footer>
